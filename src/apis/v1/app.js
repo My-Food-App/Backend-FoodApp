@@ -30,7 +30,24 @@ io.on("connection", function (socket) {
   console.log("socket", socket.id);
 
   socket.on("ADD_ITEM_INTO_CART", function () {
-    socket.emit("LOAD_CART");
+    io.sockets.emit("LOAD_CART");
+  });
+  socket.on("CHANGE_STORE", function () {
+    io.sockets.emit("LOAD_STORE");
+    
+  });
+  socket.on("CHANGE_ORDER", function () {
+    console.log("CHANGE_ORDER");
+    io.sockets.emit("LOAD_ORDER");
+  });
+  socket.on("CHANGE_LIST_PRODUCT", function () {
+    io.sockets.emit("LOAD_LIST_PRODUCT");
+  });
+  socket.on("ADD_SHIPPER", function () {
+    io.sockets.emit("LOAD_LIST_ACCOUNT");
+  });
+  socket.on("ADD_NOTIFICATION", function () {
+    io.sockets.emit("LOAD_LIST_NOTIFICATION");
   });
 
   socket.on("disconnect", () => {
