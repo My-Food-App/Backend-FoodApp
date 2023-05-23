@@ -5,6 +5,7 @@ const productRouter =  require("./product.routes")
 const orderRouter = require("./order.routes")
 const categoryRouter = require("./category.routes")
 const paymentRoute = require("./payment.routes")
+const notifiRoute = require("./notification.route")
 
 function route(app) {
   const versionApi = (routeName) => `/api/v1/${routeName}`;
@@ -16,6 +17,7 @@ function route(app) {
   app.use(versionApi("orders"),orderRouter);
   app.use(versionApi("categories"),categoryRouter);
   app.use(versionApi("payments"),paymentRoute);
+  app.use(versionApi("notifications"),notifiRoute);
 
 }
 
