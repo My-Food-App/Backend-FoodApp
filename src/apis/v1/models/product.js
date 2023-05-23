@@ -34,6 +34,10 @@ const productSchema = new Schema({
   sold:{
     type: Number,
     default: 0
+  },
+  category:{
+    type: String,
+    required: false,
   }
 });
 
