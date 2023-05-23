@@ -11,7 +11,7 @@ class ProductsController {
   async updateById(req, res) {
     const { id } = req.params;
     try {
-      const product = await Product.findByIdAndUpdate(id, req.body);
+      const product = await Product.findByIdAndUpdate(id, req.body).lean()
       res.json(product);
     } catch (error) {
       res.status(500).send(error.message);
@@ -20,7 +20,7 @@ class ProductsController {
   async deleteById(req, res) {
     const { id } = req.params;
     try {
-      await Product.findByIdAndDelete(id);
+      await Product.findByIdAndDelete(id).lean()
       res.json("Deleted");
     } catch (error) {
       res.status(500).send(error.message);
@@ -29,7 +29,7 @@ class ProductsController {
   async getById(req, res) {
     const { id } = req.params;
     try {
-      const product = await Product.findById(id);
+      const product = await Product.findById(id).lean()
       res.json(product);
     } catch (error) {
       res.status(500).send(error.message);
@@ -37,7 +37,7 @@ class ProductsController {
   }
   async getAll(req, res) {
     try {
-      const products = await Product.find();
+      const products = await Product.find().lean()
       res.json(products);
     } catch (error) {
       res.status(500).send(error.message);
@@ -45,7 +45,7 @@ class ProductsController {
   }
   async findByName(req,res) {
     try {
-        const products = await Product.find({'name': { '$regex' : req.body.keyWord, '$options' : 'i' }})
+        const products = await Product.find({'name': { '$regex' : req.body.keyWord, '$options' : 'i' }}).lean()
         res.json(products);
     } catch (error) {
         res.status(500).send(error.message)
@@ -53,7 +53,7 @@ class ProductsController {
 }
 async findByIdStore(req,res) {
   try {
-      const products = await Product.find({'idStore': { '$regex' : req.body.keyWord, '$options' : 'i' }})
+      const products = await Product.find({'idStore': { '$regex' : req.body.keyWord, '$options' : 'i' }}).lean()
       res.json(products);
   } catch (error) {
       res.status(500).send(error.message)

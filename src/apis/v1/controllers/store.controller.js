@@ -11,7 +11,7 @@ class StoreController {
     async updateById(req, res){
         const {id} = req.params
          try {
-            const newStore =  await Store.findByIdAndUpdate(id,req.body)
+            const newStore =  await Store.findByIdAndUpdate(id,req.body).lean()
              res.json(newStore)
             
          } catch (error) {
@@ -21,7 +21,7 @@ class StoreController {
     async deleteById(req,res) {
         const {id} = req.params
         try {
-            const store = await Store.findByIdAndDelete(id)
+            const store = await Store.findByIdAndDelete(id).lean()
             res.json('Deleted');
         } catch (error) {
             res.status(500).send(error.message)
@@ -30,7 +30,7 @@ class StoreController {
     async getById(req,res) {
         const {id} = req.params
         try {
-            const store = await Store.findById(id)
+            const store = await Store.findById(id).lean()
             res.json(store);
         } catch (error) {
             res.status(500).send(error.message)
@@ -38,7 +38,7 @@ class StoreController {
     }
     async getAll(req,res){
         try {
-            const stores = await Store.find()
+            const stores = await Store.find().lean()
             res.json(stores);
         } catch (error) {
             res.status(500).send(error.message)
@@ -46,7 +46,7 @@ class StoreController {
     }
     async findByName(req,res) {
         try {
-            const stores = await Store.find({'name': { '$regex' : req.body.keyWord, '$options' : 'i' }})
+            const stores = await Store.find({'name': { '$regex' : req.body.keyWord, '$options' : 'i' }}).lean()
             res.json(stores);
         } catch (error) {
             res.status(500).send(error.message)
@@ -55,7 +55,7 @@ class StoreController {
     }
     async findByUserId(req,res) {
         try {
-            const stores = await Store.findOne({'userId': { '$regex' : req.body.keyWord, '$options' : 'i' }})
+            const stores = await Store.findOne({'userId': { '$regex' : req.body.keyWord, '$options' : 'i' }}).lean()
             res.json(stores);
         } catch (error) {
             res.status(500).send(error.message)

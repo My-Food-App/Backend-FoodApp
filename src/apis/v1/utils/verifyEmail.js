@@ -13,7 +13,7 @@ function verifyEmail(email) {
           pass: process.env.PASSWORD,
         },
       });
-      const code = 305257; //parseInt(Math.random() * 999999);
+      const code = parseInt(Math.random() * 999999);
       var mailOption = {
         from: process.env.EMAIL,
         to: email,

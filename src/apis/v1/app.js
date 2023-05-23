@@ -49,7 +49,6 @@ io.on("connection", function (socket) {
   socket.on("ADD_NOTIFICATION", function () {
     io.sockets.emit("LOAD_LIST_NOTIFICATION");
   });
-
   socket.on("disconnect", () => {
     console.log("disconnect");
   });
