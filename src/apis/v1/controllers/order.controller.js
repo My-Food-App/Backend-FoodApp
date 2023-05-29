@@ -80,5 +80,14 @@ class OrderController {
         }
       
     }
+    async getByOrderName(req,res) {
+        try {
+            const orders = await Order.find({'name': { '$regex' : req.body.keyWord, '$options' : 'i' }}).lean()
+            res.json(orders);
+        } catch (error) {
+            res.status(500).send(error.message)
+        }
+      
+    }
 }
 module.exports = new OrderController()

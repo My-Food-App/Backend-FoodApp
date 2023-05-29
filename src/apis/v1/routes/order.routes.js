@@ -10,6 +10,7 @@ router.get('/getByStatus', orderController.getByStatus);
 router.post('/getByUserId', orderController.getByUserId);
 router.post('/getByStoreId', orderController.getByStoreId);
 router.post('/getByShipperId', orderController.getByShipperId);
+router.post('/getByOrderName', orderController.getByOrderName);
 router.get('/:id', orderController.getById);
 router.get('/', orderController.getAll);
 
